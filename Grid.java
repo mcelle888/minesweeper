@@ -68,7 +68,7 @@ public class Grid {
         String green = "\u001B[32m";  
         String red = "\u001B[31m";  
         String purple = "\u001B[35m"; 
-        
+
 
         System.out.println(reset + "Current Grid:");
         for (int i = 0; i < rows; i++) {
@@ -96,8 +96,9 @@ public class Grid {
     }
 
     public void revealCell(int row, int col) {
+        String red = "\u001B[31m";
         if (row < 0 || row >= rows || col < 0 || col >= columns || revealed[row][col]) {
-            System.out.println("Invalid coordinate, please try again.");
+            System.out.println(red + "Invalid coordinate, please try again.");
             return;
         }
 
