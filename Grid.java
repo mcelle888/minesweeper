@@ -68,8 +68,9 @@ public class Grid {
         String green = "\u001B[32m";  
         String red = "\u001B[31m";  
         String purple = "\u001B[35m"; 
+        
 
-        System.out.println("Current Grid:");
+        System.out.println(reset + "Current Grid:");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 if (revealed[i][j] || showAll) {
