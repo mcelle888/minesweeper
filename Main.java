@@ -90,7 +90,7 @@ private static int getValidInput(Scanner scanner) {
                 continue;
             }
             break;
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             System.out.println(red + "Invalid input. Please enter a valid number or type '\\quit' to exit.");
         }
     }

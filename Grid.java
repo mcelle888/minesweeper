@@ -97,25 +97,30 @@ public class Grid {
 
     public void revealCell(int row, int col) {
         String red = "\u001B[31m";
-        if (row < 0 || row >= rows || col < 0 || col >= columns || revealed[row][col]) {
-            System.out.println(red + "Invalid coordinate, please try again.");
-            return;
-        }
+         if (row < 0 || row >= rows || col < 0 || col >= columns) {
+        System.out.println(red + "Invalid coordinate, please try again.");
+        return;
+    }
 
-        revealed[row][col] = true;
+    if (revealed[row][col]) {
+        System.out.println(red + "Coordinate (" + (row + 1) + ", " + (col + 1) + ") has already been revealed.");
+        return;
+    }
 
-        for (int i = Math.max(row - 1, 0); i <= Math.min(row + 1, rows - 1); i++) {
-            for (int j = Math.max(col - 1, 0); j <= Math.min(col + 1, columns - 1); j++) {
-                if (!revealed[i][j] && grid[i][j] != GridElement.BOMB) {
-                    revealed[i][j] = true;
-                    if (grid[i][j] == GridElement.EMPTY) {
-                        revealCell(i, j);
-                    }
+    revealed[row][col] = true;
+
+    for (int i = Math.max(row - 1, 0); i <= Math.min(row + 1, rows - 1); i++) {
+        for (int j = Math.max(col - 1, 0); j <= Math.min(col + 1, columns - 1); j++) {
+            if (!revealed[i][j] && grid[i][j] != GridElement.BOMB) {
+                revealed[i][j] = true;
+                if (grid[i][j] == GridElement.EMPTY) {
+                    revealCell(i, j);
                 }
             }
         }
+    }
 
-        printGrid(false);
+    printGrid(false);
     }
 
     public boolean isGameWon() {
