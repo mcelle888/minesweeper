@@ -60,13 +60,32 @@ public class Grid {
         return count;
     }
 
-    
     public void printGrid(boolean showAll) {
+        // ANSI esc codes
+        String reset = "\u001B[0m";
+        String defaultColor = reset;  
+        String blue = "\u001B[34m";  
+        String green = "\u001B[32m";  
+        String red = "\u001B[31m";  
+        String purple = "\u001B[35m"; 
+
         System.out.println("Current Grid:");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 if (revealed[i][j] || showAll) {
-                    System.out.print(grid[i][j].getSymbol() + " ");
+                    if (grid[i][j] == GridElement.BOMB) {
+                        System.out.print(red + grid[i][j].getSymbol() + reset + " ");
+                    } else if (grid[i][j] == GridElement.EMPTY) {
+                        System.out.print(defaultColor + grid[i][j].getSymbol() + reset + " ");
+                    } else if (grid[i][j] == GridElement.ONE || grid[i][j] == GridElement.FIVE) {
+                        System.out.print(blue + grid[i][j].getSymbol() + reset + " ");
+                    } else if (grid[i][j] == GridElement.TWO || grid[i][j] == GridElement.FOUR) {
+                        System.out.print(green + grid[i][j].getSymbol() + reset + " ");
+                    } else if (grid[i][j] == GridElement.THREE || grid[i][j] == GridElement.SIX) {
+                        System.out.print(red + grid[i][j].getSymbol() + reset + " ");
+                    } else if (grid[i][j] == GridElement.FOUR || grid[i][j] == GridElement.EIGHT) {
+                        System.out.print(purple + grid[i][j].getSymbol() + reset + " ");
+                    }
                 } else {
                     System.out.print(GridElement.HIDDEN.getSymbol() + " ");
                 }
@@ -77,18 +96,24 @@ public class Grid {
 
     public void revealCell(int row, int col) {
         if (row < 0 || row >= rows || col < 0 || col >= columns || revealed[row][col]) {
-            System.out.println("Invalid co-ordinate, please try again.");
+            System.out.println("Invalid coordinate, please try again.");
             return;
         }
 
         revealed[row][col] = true;
 
-        if (grid[row][col] == GridElement.BOMB) {
-            System.out.println("Game Over! You hit a bomb.");
-            printGrid(true);
-        } else {
-            printGrid(false);
+        for (int i = Math.max(row - 1, 0); i <= Math.min(row + 1, rows - 1); i++) {
+            for (int j = Math.max(col - 1, 0); j <= Math.min(col + 1, columns - 1); j++) {
+                if (!revealed[i][j] && grid[i][j] != GridElement.BOMB) {
+                    revealed[i][j] = true;
+                    if (grid[i][j] == GridElement.EMPTY) {
+                        revealCell(i, j);
+                    }
+                }
+            }
         }
+
+        printGrid(false);
     }
 
     public boolean isGameWon() {
