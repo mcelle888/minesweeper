@@ -103,7 +103,7 @@ public class Grid {
     }
 
     if (revealed[row][col]) {
-        System.out.println(red + "Coordinate (" + (row + 1) + ", " + (col + 1) + ") has already been revealed.");
+        System.out.println(red + "Coordinate (" + (row + 1) + ", " + (col + 1) + ") have been revealed!");
         return;
     }
 
