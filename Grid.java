@@ -102,11 +102,6 @@ public class Grid {
         return;
     }
 
-    if (revealed[row][col]) {
-        System.out.println(red + "Coordinate (" + (row + 1) + ", " + (col + 1) + ") have been revealed!");
-        return;
-    }
-
     revealed[row][col] = true;
 
     for (int i = Math.max(row - 1, 0); i <= Math.min(row + 1, rows - 1); i++) {
