@@ -3,10 +3,10 @@
 A simplified version of Minesweeper run on the command line and written using Java.
 
 ![Screenshot](./assets/minesweeper.png)
-
+![Screenshot](./assets/minesweeper2.png)
 ## How to Play: 
 
-#### 1. Open Terminal <!-- omit in toc -->
+#### 1. Open Terminal  
 In your terminal window, check that you have java installed. You can do this by running:
 ```bash
 java --version
