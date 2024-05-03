@@ -5,15 +5,24 @@ A simplified version of Minesweeper run on the command line and written using Ja
 ![Screenshot](./assets/minesweeper.png)
 
 ## How to Play: 
+
+#### 1. Open Terminal <!-- omit in toc -->
+In your terminal window, check that you have java installed. You can do this by running:
+```bash
+java --version
+```
+
+If java is not installed, you can follow the installation guide [here](https://www.java.com/en/download/help/download_options.html)
  
-#### 1. Download the game
+ 
+#### 2. Download the game
 
 Copy and paste the following to your terminal: 
 ```bash
 git clone git@github.com:mcelle888/minesweeper.git
 ```
 
-#### 2. Open terminal and CD into the file  
+#### 3. CD into the file  
 ```bash
 cd minesweeper
 ```
